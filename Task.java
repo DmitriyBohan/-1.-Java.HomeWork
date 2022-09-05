@@ -2,58 +2,35 @@ import java.util.Scanner;
 
 public class Task {
     public static void main(String[] args) {
-        Calc();
+        Scanner iScanner = new Scanner(System.in);
+        Calc(iScanner);
+        Question(iScanner);
+        iScanner.close();
+
     }
 
-    public static void Question() {
-        Scanner iScanner = new Scanner(System.in);
-        System.out.printf("Хотите продолжить? ");
-        String answer = iScanner.nextLine();
-        // iScanner.close();
-        switch (answer) {
-            case "da":
-                Calc();
-            case "Da":
-                Calc();
-            case "dA":
-                Calc();
-            case "DA":
-                Calc();
+    public static void Question(Scanner scan) {
+        System.out.printf("\nХотите продолжить?\n");
+        //String answer = scan.nextLine();
+        byte[] b = scan.next().getBytes();
+        String answer = new String(b, "UTF-8");
+        if (answer.equalsIgnoreCase("DA")) {
+            Calc(scan);
+        } else {
+            System.out.printf("До свидания!");
 
-            default:
-                System.out.printf("Ну и ладно!");
-                break;
         }
-        // switch (answer) {
-        // case "Да":
-        // Calc();
-        // case "дА":
-        // Calc();
-        // case "ДА":
-        // Calc();
-        // case "да":
-        // Calc();
-        //
-        // default:
-        // System.out.printf("Ну и ладно!");
-        // break;
-        // }
-        // if ( answer == "Да"|| answer == "дА" || answer == "ДА" || answer == "да")
-        // return 1;
 
-        // else
-        // return 0;
     }
 
-    public static void Calc() {
+    public static void Calc(Scanner scan) {
 
-        Scanner iScanner = new Scanner(System.in);
         System.out.printf("Итак калькулятор!\nВведите первое число: ");
-        float firstNumber = iScanner.nextFloat();
+        float firstNumber = scan.nextFloat();
         System.out.printf("Введите второе число: ");
-        float secondNumber = iScanner.nextFloat();
+        float secondNumber = scan.nextFloat();
         System.out.printf("Выберите операцию ( * , / , + , - ) ");
-        String operation = iScanner.next();
+        String operation = scan.next();
         switch (operation) {
             case "+":
                 System.out.printf("Результат = %s", firstNumber + secondNumber);
@@ -70,7 +47,7 @@ public class Task {
             default:
                 System.out.printf("Вы ввели фигню");
         }
+        Question(scan);
         System.out.println();
-        Question();
     }
 }
