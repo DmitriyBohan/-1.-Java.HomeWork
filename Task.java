@@ -3,27 +3,20 @@ import java.util.Scanner;
 public class Task {
     public static void main(String[] args) {
         Scanner iScanner = new Scanner(System.in);
-        Calc(iScanner);
-        Question(iScanner);
+        do {
+            calc(iScanner);
+        } while (question(iScanner));
+
         iScanner.close();
-
     }
 
-    public static void Question(Scanner scan) {
+    public static boolean question(Scanner scan) {
         System.out.printf("\nХотите продолжить?\n");
-        //String answer = scan.nextLine();
-        byte[] b = scan.next().getBytes();
-        String answer = new String(b, "UTF-8");
-        if (answer.equalsIgnoreCase("DA")) {
-            Calc(scan);
-        } else {
-            System.out.printf("До свидания!");
-
-        }
-
+        String answer = scan.nextLine();
+        return answer.equalsIgnoreCase("DA");
     }
 
-    public static void Calc(Scanner scan) {
+    public static void calc(Scanner scan) {
 
         System.out.printf("Итак калькулятор!\nВведите первое число: ");
         float firstNumber = scan.nextFloat();
@@ -47,7 +40,5 @@ public class Task {
             default:
                 System.out.printf("Вы ввели фигню");
         }
-        Question(scan);
-        System.out.println();
     }
 }
